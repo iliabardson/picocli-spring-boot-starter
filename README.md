@@ -17,6 +17,7 @@ The checked-in Gradle wrapper downloads Gradle and dependencies on first use.
 The build compiles production and test sources, runs tests, and builds JARs.
 No sibling repository checkout or locally published picocli artifact is required.
 Java 17 is the version verified locally and used by CI.
+See [build-verification.json](build-verification.json) for the local build results.
 
 ## Included source
 

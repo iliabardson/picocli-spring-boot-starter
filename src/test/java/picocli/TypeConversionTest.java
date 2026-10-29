@@ -525,7 +525,8 @@ public class TypeConversionTest {
     }
     @Test
     public void testInetAddressConvertersInvalidError() {
-        parseInvalidValue("-InetAddress", "test.invalid", "java.net.UnknownHostException: ");
+        // A malformed literal fails without depending on the DNS resolver.
+        parseInvalidValue("-InetAddress", "invalid::address", "java.net.UnknownHostException: ");
     }
     @Test
     public void testUUIDConvertersInvalidError() {
