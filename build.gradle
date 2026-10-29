@@ -13,14 +13,10 @@ buildscript {
         classpath 'org.asciidoctor:asciidoctorj-pdf:2.3.19'
         classpath "org.beryx:badass-jar:2.0.0"
         classpath 'biz.aQute.bnd:biz.aQute.bnd.gradle:6.4.0'
-        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
         classpath "net.ltgt.gradle:gradle-errorprone-plugin:4.2.0"
     }
 }
 
-plugins {
-    id 'org.jreleaser' version '1.17.0'
-}
 
 group          = 'info.picocli'
 description    = 'Java command line parser with both an annotations API and a programmatic API. Usage help with ANSI styles and colors. Autocomplete. Nested subcommands. Easily included as source to avoid adding a dependency.'
@@ -28,7 +24,6 @@ version        = "$projectVersion"
 ext.moduleName = 'info.picocli'
 
 apply plugin: 'org.beryx.jar' // for compiling module-info on Java 8
-apply plugin: 'io.codearte.nexus-staging'
 
 if (System.getenv('MAVEN_OSS_USER')) { // on home system
     apply plugin: 'biz.aQute.bnd.builder'
@@ -97,7 +92,6 @@ allprojects {
     compileTestJava.options.encoding = "UTF-8"
 
     repositories {
-        maven { url = 'https://repo.spring.io/libs-snapshot' }
         mavenCentral()
     }
 
@@ -224,5 +218,4 @@ ext {
 }
 apply from: "${rootProject.projectDir}/gradle/publish-mavencentral.gradle"
 
-// release-related custom gradle tasks and release procedure steps
-apply from: "${rootProject.projectDir}/gradle/release-tasks.gradle"
+// Upstream release tasks refer to modules outside this subset.
